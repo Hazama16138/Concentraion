@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+	<script>
+		// console.log("hello world!");
+		var test = [], min = 0, max = 20;
+
+		for(var i = min; i < max; i++) {
+			test.push(i);
+		}
+
+		// console.log(test);
+
+		shuffle(min, max);
+
+		console.log(test);
+
+		function shuffle(min, max) {
+
+			var tmp, j, max, min;
+
+			for(var i = min; i < max; i++) {
+				j = Math.floor(Math.random() * (i + 1));
+				// console.log(j);
+				tmp     = test[i];
+				// console.log(tmp);
+				test[i] = test[j];
+				// console.log(test[i]);
+				test[j] = tmp;
+				// console.log(test[[j]]);
+			}
+
+		}
+
+		// console.log(test);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
