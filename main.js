@@ -6,6 +6,8 @@ $(function() {
 			cards = [],
 			kind  = ["s","h","c","d"],
 			cards_len,
+			select_num = "",
+			select_index = [],
 			$li   = $("<li>"),
 			$table= $("#table"),
 			$img  = $("<img>");
@@ -23,9 +25,12 @@ $(function() {
 
 	shuffle();
 
+	console.log(cards);
+
 	for(var i = 0; i < cards_len; i++) {
 		$li
 			.clone()
+			.data("num", cards[i].replace(/[^0-9]/g, ""))
 			.addClass("card is_surface")
 			.append(
 				$img
@@ -44,6 +49,31 @@ $(function() {
 
 	$table.on("click", "li", function() {
 		$(this).toggleClass("is_surface").toggleClass("is_reverse");
+
+		if(select_num === "") {
+			select_num = $(this).data("num");
+			console.log(select_num);
+			select_index.push($(this).index());
+			console.log(select_index);
+		} else {
+			if($(this).index() !== select_index[0]) {
+				select_index.push($(this).index());
+				console.log(select_index);
+				if($(this).data("num") === select_num) {
+					console.log("okay");
+					select_num = "";
+					select_index = [];
+				} else {
+					console.log("not good");
+					select_num = "";
+					select_index = [];
+				}
+			} else {
+				select_num = "";
+				select_index = [];
+				console.log(select_index);
+			}
+		}
 	});
 
 	//関数定義エリア
